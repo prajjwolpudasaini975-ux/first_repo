@@ -2,16 +2,10 @@
 title: "500773942"
 author: "500773942"
 date: "2025-11-23"
-output: github_document
+output:
+  html_document: default
+  pdf_document: default
 ---
-
-#### Date of program : 19/11/2025
-
-#### Student ID : 500773942
-
-#### Module Code : ASB-4012
-
-#### Semester : 1
 
 #### Purpose of the program :
 
@@ -35,14 +29,14 @@ library(patchwork)
 ```
 
 ```{r}
-raw_orders_coffee <- read.csv("raw_orders_coffee.csv")
+raw_orders_coffee <- read.csv(file.path("D:", "Git Demo", "first_repo", "raw_orders_coffee.csv"))
 
 date_cols = c('Date','Customer_DOB')
 
 for (i in date_cols){
   raw_orders_coffee[[i]] <- as.Date(raw_orders_coffee[[i]],format = "%d/%m/%Y")
 }
-raw_orders_coffee
+head(raw_orders_coffee,10)
 
 
 
@@ -82,10 +76,7 @@ Unique_Customer$Customer_DOB<- as.Date(Unique_Customer$Customer_DOB,format = "%Y
 benchmark <- as.Date("2025-08-31")
 difference <-  as.numeric(benchmark - Unique_Customer$Customer_DOB)
 Unique_Customer$Age <- floor(difference/365)
-
-  
-
-
+head(Unique_Customer,10)
 ```
 
 ### Task 1(b) : Extract the product names, quantities and unit prices
@@ -163,9 +154,6 @@ for (i in seq(1:length(colnames(order))))
     order[[i]] <- round(order[[i]],2)
   }
 head(order,10)
-
-#exporting the dataframe to local file.
-#write.csv(order,file = "D:\\Bangor University\\Courses\\Coding for Business Application\\End Project\\Code Exports\\orders.csv",row.names = FALSE)
 
 
 
