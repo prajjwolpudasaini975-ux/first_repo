@@ -2,9 +2,7 @@
 title: "500773942"
 author: "500773942"
 date: "2025-11-23"
-output:
-  html_document: default
-  pdf_document: default
+output: github_document
 ---
 
 #### Date of program : 19/11/2025
