@@ -1,12 +1,19 @@
 ---
-title: "Coffee Shop Project"
-author: "Prajjwol"
+title: "500773942"
+author: "500773942"
 date: "2025-11-23"
 output:
   html_document: default
   pdf_document: default
 ---
 
+#### Date of program : 19/11/2025
+
+#### Student ID : 500773942
+
+#### Module Code : ASB-4012
+
+#### Semester : 1
 
 #### Purpose of the program :
 
@@ -29,11 +36,27 @@ library(scales)
 library(patchwork)
 ```
 
+```{r}
+raw_orders_coffee <- read.csv("raw_orders_coffee.csv")
+
+date_cols = c('Date','Customer_DOB')
+
+for (i in date_cols){
+  raw_orders_coffee[[i]] <- as.Date(raw_orders_coffee[[i]],format = "%d/%m/%Y")
+}
+raw_orders_coffee
+
+
+
+
+
+```
+
 ### Task 1(a) (Extracting Customer Data frame)
 
 ```{r}
 
-raw_orders_coffee <- readRDS("raw_orders_coffee.rds")
+#raw_orders_coffee <- read.csv("raw_orders_coffee.csv")
 #customer dataframe including both members and non-member for single Customer ID
 
 Customer <- raw_orders_coffee %>%
@@ -57,8 +80,8 @@ Unique_Customer <- raw_orders_coffee %>%
   select(Customer_ID,Customer,Customer_DOB,Customer_Membership_Status)
 Unique_Customer <- Unique_Customer[order(Unique_Customer$Customer_ID),]
 Unique_Customer <- separate(data = Unique_Customer,col = "Customer",into = c("First_Name","Last_Name"),extra = "merge")
-Unique_Customer$Customer_DOB<- as.Date(Unique_Customer$Customer_DOB,format = "%Y-%M-%D")
-benchmark <- as.Date("2025-10-16")
+Unique_Customer$Customer_DOB<- as.Date(Unique_Customer$Customer_DOB,format = "%Y-%m-%d")
+benchmark <- as.Date("2025-08-31")
 difference <-  as.numeric(benchmark - Unique_Customer$Customer_DOB)
 Unique_Customer$Age <- floor(difference/365)
 
@@ -367,4 +390,3 @@ lorenz_curve + vip_plot
 ​Chapter 13 The gglot2 Library \| Technical Foundations of Informatics. (n.d.). Retrieved November 19, 2025, from <https://info201.github.io/ggplot2.html> 
 
 ​Villanova, D., Bodapati, A. V., Puccinelli, N. M., Tsiros, M., Goodstein, R. C., Kushwaha, T., Suri, R., Ho, H., Brandon, R., & Hatfield, C. (2021). Retailer Marketing Communications in the Digital Age: Getting the Right Message to the Right Shopper at the Right Time. Journal of Retailing, 97(1), 116–132. <https://doi.org/10.1016/J.JRETAI.2021.02.001> 
-
